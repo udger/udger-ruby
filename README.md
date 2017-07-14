@@ -33,14 +33,14 @@ User agent and ip parser for Udger db.
 
   - cache - default is true, enable caching results. Only available for user agent parsing.
   - lru_cache_size - default is 10,000. How many objects to be cached.
-  - ua_services - if you do not need all information for user agent, you can specify services. Available services are: [:crawler, :client, :os, :device, :device_market]. Reducing a number of services it will improve performances.
+  - ua_services - if you do not need all the information for a user agent, you can specify which services to receive. Available services are: [:crawler, :client, :os, :device, :device_market]. Reducing the number of services will improve performances.
 
 
 ### Parsing user agent
 
     parser.parse_ua('Mozilla/5.0 (Windows NT 10.0; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0')
 
-This returns struct with following data. If data are not present it will return nil value.
+This returns a struct with the following data. If data are not present, it will return nil value.
 
    - ua_class
    - ua_class_code
@@ -92,7 +92,7 @@ This returns struct with following data. If data are not present it will return 
     parser.parse_ip('2a02:598:111::9')
 
 
-This returns struct with following data. If data are not present it will return nil value.
+This returns a struct with the following data. If data are not present, it will return nil value.
 
   - ip_ver
   - ip_classification
