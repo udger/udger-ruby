@@ -11,7 +11,8 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{Udger user agent library}
   spec.description   = %q{Udger user agent library.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.homepage      = "https://github.com/TowerData/udger-ruby"
+  spec.license = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
   # to allow pushing to a single host or delete this section to allow pushing to any host.
@@ -29,8 +30,8 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
-  spec.add_dependency 'sqlite3', '>= 1.3.0'
-  spec.add_dependency 'lru_redux', '>= 1.1.0'
+  spec.add_dependency 'sqlite3', '~> 1.3'
+  spec.add_dependency 'lru_redux', '~> 1.1'
 
   spec.add_development_dependency 'bundler', '~> 1.14'
   spec.add_development_dependency 'simplecov', '~> 0.14'
