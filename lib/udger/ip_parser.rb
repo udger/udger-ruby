@@ -1,6 +1,6 @@
 require 'ipaddr'
 module Udger
-  class IpParser < Parser
+  class IpParser < BaseParser
     attr_accessor :db, :object, :ip
 
     def initialize(db, ip)

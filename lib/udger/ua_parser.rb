@@ -1,9 +1,16 @@
 module Udger
-  class UaParser < Parser
-    attr_accessor :db, :ua_string
+  class UaParser < BaseParser
+    attr_accessor :db, :ua_string, :object
 
-    def initialize(db, ua_string)
+    def initialize(db, ua_string, crawler: true, client: true, os: true, device: true, device_market: true)
       super(db)
+
+      @match_crawler = crawler
+      @match_client = client
+      @match_os = os
+      @match_device = device
+      @match_device_market = device_market
+
       @ua_string = ua_string
       @object = UserAgent.new
       @os_id = 0
@@ -15,15 +22,17 @@ module Udger
     def parse
       return unless ua_string
       object.ua_string = ua_string
-      crawler_data = parse_crawler
+      crawler_data = @match_crawler ? parse_crawler : []
       if !crawler_data.empty?
         format_crawler_data crawler_data[0]
       else
-        parse_client
-        parse_os
-        parse_client_os
-        parse_device
-        devise_market_name
+        parse_client if @match_client
+        if @match_os || @match_device_market
+          parse_os
+          parse_client_os
+        end
+        parse_device if @match_device
+        devise_market_name if @match_device_market
       end
     end
 
@@ -142,6 +151,7 @@ module Udger
     end
 
     def parse_device
+
       query = 'SELECT deviceclass_id,regstring,name,name_code,icon,icon_big
                FROM udger_deviceclass_regex
                JOIN udger_deviceclass_list ON udger_deviceclass_list.id=udger_deviceclass_regex.deviceclass_id
@@ -154,6 +164,11 @@ module Udger
         object.device_class_icon = result['icon']
         object.device_class_icon_big = result['icon_big']
         object.device_class_info_url = "https://udger.com/resources/ua-list/device-detail?device=#{result['name']}"
+      end
+
+      # If there is no @client_class_id and @match_client is not enabled
+      if @client_class_id == -1 && !@match_client
+        parse_client
       end
 
       if @deviceclass_id.zero? && @client_class_id != -1
