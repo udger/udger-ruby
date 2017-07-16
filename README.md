@@ -1,4 +1,11 @@
-# Udger
+# Udger client for Ruby (data ver. 3)
+Local parser is very fast and accurate useragent string detection solution. Enables developers to locally install and integrate a highly-scalable product.
+We provide the detection of the devices (personal computer, tablet, Smart TV, Game console etc.), operating system, client SW type (browser, e-mail client etc.)
+and devices market name (example: Sony Xperia Tablet S, Nokia Lumia 820 etc.).
+It also provides information about IP addresses (Public proxies, VPN services, Tor exit nodes, Fake crawlers, Web scrapers, Datacenter name .. etc.)
+
+- Tested with more the 10.000 unique user agents.
+- Up to date data provided by https://udger.com/
 
 ## Installation
 
@@ -126,5 +133,5 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/TowerData/udger.
+Bug reports and pull requests are welcome on GitHub at https://github.com/udger/udger-ruby.
 
